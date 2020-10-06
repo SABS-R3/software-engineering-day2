@@ -747,7 +747,7 @@ Which is the average inflammation per patient across all days.
 > {: .solution}
 {: .challenge}
 
-## Multi-dimensional Arrays
+## Multi-dimensional Arrays (Optional)
 
 NumPy's true power comes from multi-dimensional arrays:
 
@@ -818,7 +818,7 @@ array([ 0.,  1.,  2.,  2.,  4.,  3.,  1.,  4.,  8.,  9.,  5., 10., 10.,
 ~~~
 {: .output}
 
-### Broadcasting
+### Broadcasting (Optional)
 
 This is another really powerful feature of NumPy.
 

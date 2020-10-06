@@ -50,6 +50,15 @@ pip3 install matplotlib
 ~~~
 {: .language-bash}
 
+Matplotlib makes use of a *renderer* to allow us to view generated graphs and plots as images. The default renderer ('agg') isn't really suitable for this, so we need to install another one via the Ubuntu operating system's package manager:
+
+~~~
+sudo apt-get install python3-tk
+~~~
+{: .language-bash}
+
+You'll be asked for the  `sabsr3` user's password - once entered, the package will be installed.
+
 
 ## Visualising our Inflammation Data
 
@@ -67,6 +76,8 @@ matplotlib.pyplot.show()
 ![inflammation-heatmap-imshow](../fig/13-inflammation-01-heatmap-imshow.svg)
 
 Blue pixels in this heat map represent low values, while yellow pixels represent high values. As we can see, inflammation rises and falls over a 40-day period.
+
+When we close the generated graph, note that running `matplotlib.pyplot.show()` again doesn't show us the graph. This odd behaviour comes back to Matplotlib's hidden state and is a design decision: `show()` represents the end of expected the graph creation process and is only intended to be used once. So annoyingly, in order to display it again we'd need to recreate the graph.
 
 Let's take a look at the average inflammation over time:
 
@@ -228,7 +239,13 @@ all_graphs.savefig('overlay_graphs.png')
 ~~~
 {: .language-python}
 
-When we re-run the script, you should see a new `overlay_graphs.png` file in the same directory as the script.
+When we re-run the script, you should see a new `overlay_graphs.png` file in the same directory as the script. If we want to view this image, we can use an image tool called Eye of Gnome which is an Ubuntu default image viewer. To view the image, start a new terminal, change to the directory where this image is located, and then run:
+
+~~~
+eog overlay_graphs.png
+~~~
+{: .language-bash}
+
 
 ## Dealing with Multiple Datasets
 
