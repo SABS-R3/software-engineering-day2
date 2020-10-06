@@ -1,7 +1,7 @@
 ---
 title: "Scientific Visualisation with Matplotlib"
-teaching: 50
-exercises: 30
+teaching: 0
+exercises: 70
 questions:
 - "How can I visualise my data?"
 objectives:
@@ -26,6 +26,11 @@ The mathematician Richard Hamming once said, "The purpose of computing is insigh
 the best way to develop insight is often to visualize data.  Visualization deserves an entire
 lecture of its own, but we can explore a few features of Python's `matplotlib` library here.  While
 there is no official plotting library, `matplotlib` is the _de facto_ standard.
+
+## Introduction to Matplotlib (and NumPy)
+
+If you haven't already seen it, see topic [video lecture](FIXME), and [PowerPoint slides](../slides/2.2-Intro-NumPy-Matplotlib.pptx) used with per-slide notes.
+
 
 > ## Some IPython Magic
 >

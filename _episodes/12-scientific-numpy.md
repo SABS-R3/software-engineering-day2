@@ -1,8 +1,9 @@
 ---
 title: "Scientific Programming with NumPy"
-teaching: 60
-exercises: 20
+teaching: 15
+exercises: 65
 questions:
+- "What are NumPy and Matplotlib, and what are they good for?"
 - "What are the differences between NumPy arrays and Python lists?"
 - "How do I extract subsets of data from a dataset?"
 - "How can I use NumPy to tell me basic statistical properties about my data?"
@@ -23,9 +24,9 @@ keypoints:
 - "Broadcasting allows you to apply an operation to two arrays of different shape, repeating the data in an array of a one-long dimension to match the larger array."
 ---
 
-## Introduction to NumPy
+## Introduction to NumPy (and Matplotlib)
 
-See slides at [slides](../slides/11-scientific-numpy.html).
+See topic [video lecture](FIXME), and [PowerPoint slides](../slides/2.2-Intro-NumPy-Matplotlib.pptx) used with per-slide notes.
 
 ## NumPy Arrays vs Python Lists
 
