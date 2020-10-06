@@ -4,6 +4,7 @@ teaching: 0
 exercises: 70
 questions:
 - "How can I visualise my data?"
+- "What is Matplotlib and what can I use it for?"
 objectives:
 - "Generate a heatmap of longitudinal, numerical tabular data."
 - "Create graphs of mean, minimum, and maximum characteristics over time from data."
@@ -12,7 +13,6 @@ objectives:
 - "Write a script to visualise data from multiple data files."
 - "Use a library function to get a list of filenames that match a certain pattern."
 keypoints:
-- "Use `%matplotlib inline` to show our graphs immediately after creation within a Notebook."
 - "Use `matplotlib.pyplot.plot(data)` to generate a graph from `data`."
 - "Use `matplotlib.pyplot.show()` to display a generated graph."
 - "Matplotlib allows us to add multiple graphs within a single plot, or within separate plots using a `figure`."
@@ -32,19 +32,23 @@ there is no official plotting library, `matplotlib` is the _de facto_ standard.
 If you haven't already seen it, see topic [video lecture](FIXME), and [PowerPoint slides](../slides/2.2-Intro-NumPy-Matplotlib.pptx) used with per-slide notes.
 
 
-> ## Some IPython Magic
->
-> As we did yesterday, when using a Jupyter notebook you'll need to use the following *magic* in order for your matplotlib images to appear in the notebook when `show()` is called:
->
-> ~~~
-> %matplotlib inline
-> ~~~
-> {: .language-python}
->
-> Again, note that you only have to execute this function once per notebook.
->
-> Lines beginning with a single percent are not python code: they control how the notebook deals with python code. Lines beginning with two percents are "cell magics", that tell Jupyter notebook how to interpret the particular cell.
-{: .callout}
+## Adding Matplotlib to our Virtual Environment
+
+Similarly to installing NumPy, we also need to install the Matplotlib external library to use it. If we need to reactivate our virtual environment we can do:
+
+~~~
+cd
+cd 2020-se-day2/code
+source venv/bin/activate
+~~~
+{: .language-bash}
+
+And then, to install the package:
+
+~~~
+pip3 install matplotlib
+~~~
+{: .language-bash}
 
 
 ## Visualising our Inflammation Data
@@ -108,6 +112,7 @@ The maximum value rises and falls smoothly, while the minimum seems to be a step
 > > {: .language-python}
 > {: .solution}
 {: .challenge}
+
 
 ## Multiple Plots: Single Graph
 

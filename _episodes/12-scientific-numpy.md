@@ -3,7 +3,7 @@ title: "Scientific Programming with NumPy"
 teaching: 15
 exercises: 65
 questions:
-- "What are NumPy and Matplotlib, and what are they good for?"
+- "What is NumPy and what can I use it for?"
 - "What are the differences between NumPy arrays and Python lists?"
 - "How do I extract subsets of data from a dataset?"
 - "How can I use NumPy to tell me basic statistical properties about my data?"
@@ -27,6 +27,30 @@ keypoints:
 ## Introduction to NumPy (and Matplotlib)
 
 See topic [video lecture](FIXME), and [PowerPoint slides](../slides/2.2-Intro-NumPy-Matplotlib.pptx) used with per-slide notes.
+
+
+## Adding NumPy to our Virtual Environment
+
+In order to use NumPy, since it's a third party Python external library we first need to install it. Since we've starting a new set of work for analysing data with this package, we should create a new virtual environment. We need to:
+
+1. Open a terminal and ensure we are in the correct directory to create our new virtual environment
+1. Create a new virtual environment in that directory
+1. Activate the virtual environment
+1. Install the NumPy Python package to that environment
+
+We can do this as follows:
+
+~~~
+cd
+cd 2020-se-day2/code
+python -m venv venv
+source venv/bin/activate
+pip3 install numpy
+~~~
+{: .language-bash}
+
+This reflects a typical way of working with virtual environments: a new project comes along, we create a new virtual environment in a location close to where we're working (typically in the same directory as our code), we activate that virtual environment and install the packages we'll need for the work.
+
 
 ## NumPy Arrays vs Python Lists
 
@@ -113,25 +137,21 @@ array([2, 3, 4, 5, 6])
 ~~~
 {: .output}
 
-These are known as 'vectorised' operations, and are very fast. We'll be looking at making use of these in more detail next week when we look at optimisation.
+These are known as 'vectorised' operations, and are very fast.
 
 But for now, let's take a brief look at a basic example that demonstrates the performance of NumPy over Python lists. First, using Python lists we can do the following, that creates a 2D list of size 10000x10000, sets all elements to zero, then adds 10 to all those elements:
 
 ~~~
-%%timeit
 nested_list = [[0 for _ in range(10000)] for _ in range(10000)]
 nested_list = [[x+10 for x in column] for column in nested_list]
 ~~~
 {: .language-python}
 
-Here, we use `%timeit` magic to run this cell a number of times and display an average time for how long it took to run. More [information on timeit](https://ipython.readthedocs.io/en/stable/interactive/magics.html#magic-timeit) is available.
-
 That took a while! In NumPy we replicate this by doing:
 
 ~~~
-%%timeit
 import numpy as np
-array = np.zeros((10000, 10000))
+array = np.zeros((50000, 50000))
 array = array + 10
 ~~~
 {: .language-python}
@@ -342,7 +362,7 @@ The above example selects rows 0 through 2 and columns 36 through to the end of 
 > ~~~
 > {: .output}
 >
-> We must use np.copy to force separate memory. Otherwise NumPy tries its hardest to make slices be views on data.
+> We must use np.copy to force the use of separate memory and actually copy the values. Otherwise NumPy tries its hardest to make slices be *views* on data, referencing the values and not copying them.
 {: .callout}
 
 ### Elementwise Operations on Multiple Arrays
