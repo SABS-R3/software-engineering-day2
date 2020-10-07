@@ -132,6 +132,33 @@ my_array + 2
 
 `+` in this context is an elementwise operation performed on all the matrix elements.
 
+> ## Other elementwise operations
+>
+> Try using `-`, `*`, `/` in the above statement instead. Do they do what you expect?
+>
+> > ## Solution
+> >
+> > ~~~
+> > my_array - 2
+> > my_array * 2
+> > my_array / 2
+> > ~~~
+> > {: .language-python}
+> >
+> > Will yield the following respectively:
+> > 
+> > ~~~
+> > array([-2, -1,  0,  1,  2])
+> > array([0, 2, 4, 6, 8])
+> > array([0. , 0.5, 1. , 1.5, 2. ])
+> > ~~~
+> > 
+> > Note the final one with `/` - digits after the `.` are omitted if they don't show anything interesting (i.e. they are zero).
+> > 
+> > {: .output}
+> {: .solution}
+{: .challenge}
+
 ~~~
 array([2, 3, 4, 5, 6])
 ~~~
@@ -747,80 +774,9 @@ Which is the average inflammation per patient across all days.
 > {: .solution}
 {: .challenge}
 
-## Multi-dimensional Arrays (Optional)
-
-NumPy's true power comes from multi-dimensional arrays:
-
-~~~
-np.zeros([3, 4, 2])  # 3 arrays with 4 rows and 2 columns each
-~~~
-{: .language-python}
-
-~~~
-array([[[ 0.,  0.],
-        [ 0.,  0.],
-        [ 0.,  0.],
-        [ 0.,  0.]],
-
-       [[ 0.,  0.],
-        [ 0.,  0.],
-        [ 0.,  0.],
-        [ 0.,  0.]],
-
-       [[ 0.,  0.],
-        [ 0.,  0.],
-        [ 0.,  0.],
-        [ 0.,  0.]]])
-~~~
-{: .output}
-
-Unlike a list-of-lists in Python, we can reshape arrays. Let's split our inflammation dataset in half, so that our single 2-dimensional array of 60 patients over 40 days becomes an 3-dimensional array of two arrays of 30 patients over 40 days (essentially splitting the patients into two groups):
-
-~~~
-split_data = data.reshape(2, 30, 40)
-split_data
-~~~
-{: .language-python}
-
-By doing this, the original array data gets *reshaped* into the new array dimensions:
-
-~~~
-array([[[0., 0., 1., ..., 3., 0., 0.],
-        [0., 1., 2., ..., 1., 0., 1.],
-        [0., 1., 1., ..., 2., 1., 1.],
-        ...,
-        [0., 0., 1., ..., 3., 2., 1.],
-        [0., 0., 2., ..., 3., 1., 0.],
-        [0., 0., 0., ..., 1., 0., 1.]],
-
-       [[0., 1., 1., ..., 3., 2., 1.],
-        [0., 0., 2., ..., 3., 0., 0.],
-        [0., 1., 2., ..., 0., 2., 1.],
-        ...,
-        [0., 1., 1., ..., 1., 1., 1.],
-        [0., 0., 0., ..., 0., 2., 0.],
-        [0., 0., 1., ..., 1., 1., 0.]]])
-~~~
-{: .output}
-
-And then, for example to get all inflammation data for the 10th patient in the first patient group:
-
-~~~
-split_data[0, 9]
-~~~
-{: .language-python}
-
-~~~
-array([ 0.,  1.,  2.,  2.,  4.,  3.,  1.,  4.,  8.,  9.,  5., 10., 10.,
-        3.,  4.,  6.,  7., 11., 16.,  6., 14.,  9., 11., 10., 10.,  7.,
-       10.,  8.,  8.,  4.,  5.,  8.,  4.,  4.,  5.,  2.,  4.,  1.,  1.,
-        0.])
-~~~
-{: .output}
-
 ### Broadcasting (Optional)
 
-This is another really powerful feature of NumPy.
+This is another really powerful feature of NumPy, and covers a 'special case' of array multiplication.
 
 By default, array operations are element-by-element:
 
