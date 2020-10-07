@@ -130,7 +130,12 @@ my_array + 2
 ~~~
 {: .language-python}
 
-`+` in this context is an elementwise operation performed on all the matrix elements.
+`+` in this context is an elementwise operation performed on all the matrix elements, and gives us:
+
+~~~
+array([2, 3, 4, 5, 6])
+~~~
+{: .output}
 
 > ## Other elementwise operations
 >
@@ -152,17 +157,12 @@ my_array + 2
 > > array([0, 2, 4, 6, 8])
 > > array([0. , 0.5, 1. , 1.5, 2. ])
 > > ~~~
+> > {: .output}
 > > 
 > > Note the final one with `/` - digits after the `.` are omitted if they don't show anything interesting (i.e. they are zero).
 > > 
-> > {: .output}
 > {: .solution}
 {: .challenge}
-
-~~~
-array([2, 3, 4, 5, 6])
-~~~
-{: .output}
 
 These are known as 'vectorised' operations, and are very fast.
 
@@ -389,7 +389,7 @@ The above example selects rows 0 through 2 and columns 36 through to the end of 
 > ~~~
 > {: .output}
 >
-> We must use np.copy to force the use of separate memory and actually copy the values. Otherwise NumPy tries its hardest to make slices be *views* on data, referencing the values and not copying them.
+> We must use np.copy to force the use of separate memory and actually copy the values. Otherwise NumPy tries its hardest to make slices be *views* on data, referencing existing values and not copying them.
 {: .callout}
 
 ### Elementwise Operations on Multiple Arrays
@@ -522,7 +522,7 @@ tripledata:
 
 ### Dot Products
 
-You can also do dot products of NumPy arrays:
+You can also do [dot products](https://en.wikipedia.org/wiki/Dot_product) of NumPy arrays:
 
 ~~~
 a = np.array([[1, 2], [3, 4]])
