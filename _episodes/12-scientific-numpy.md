@@ -26,7 +26,7 @@ keypoints:
 
 ## Introduction to NumPy (and Matplotlib)
 
-See topic [video lecture](FIXME), and [PowerPoint slides](../slides/2.2-Intro-NumPy-Matplotlib.pptx) used with per-slide notes.
+See topic [video lecture](https://youtu.be/kjtkYtahQCo), and [PowerPoint slides](../slides/2.2-Intro-NumPy-Matplotlib.pptx) used with per-slide notes.
 
 
 ## Adding NumPy to our Virtual Environment

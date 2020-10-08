@@ -29,7 +29,7 @@ there is no official plotting library, `matplotlib` is the _de facto_ standard.
 
 ## Introduction to Matplotlib (and NumPy)
 
-If you haven't already seen it, see topic [video lecture](FIXME), and [PowerPoint slides](../slides/2.2-Intro-NumPy-Matplotlib.pptx) used with per-slide notes.
+If you haven't already seen it, see topic [video lecture](https://youtu.be/kjtkYtahQCo), and [PowerPoint slides](../slides/2.2-Intro-NumPy-Matplotlib.pptx) used with per-slide notes.
 
 
 ## Adding Matplotlib to our Virtual Environment
