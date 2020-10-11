@@ -33,7 +33,7 @@ See topic [video lecture](https://youtu.be/kjtkYtahQCo), and [PowerPoint slides]
 
 In order to use NumPy, since it's a third party Python external library we first need to install it. Since we've starting a new set of work for analysing data with this package, we should create a new virtual environment. We need to:
 
-1. Open a terminal and ensure we are in the correct directory to create our new virtual environment
+1. Open a new terminal (to ensure a fresh environment) and ensure we are in the correct directory to create our new virtual environment
 1. Create a new virtual environment in that directory
 1. Activate the virtual environment
 1. Install the NumPy Python package to that environment
@@ -43,7 +43,7 @@ We can do this as follows:
 ~~~
 cd
 cd 2020-se-day2/code
-python -m venv venv
+python3 -m venv venv
 source venv/bin/activate
 pip3 install numpy
 ~~~
@@ -54,7 +54,7 @@ This reflects a typical way of working with virtual environments: a new project 
 
 ## NumPy Arrays vs Python Lists
 
-NumPy's array type represents a multidimensional matrix *M<sub>i,j,k...n</sub>*
+Start the Python's interpreter from the terminal again using `python3` at the prompt. NumPy's array type represents a multidimensional matrix *M<sub>i,j,k...n</sub>*
 
 The NumPy array seems at first to be just like a list:
 
