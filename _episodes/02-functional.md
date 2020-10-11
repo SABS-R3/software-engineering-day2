@@ -1,7 +1,7 @@
 ---
 title: "Functional Programming"
-teaching: 65
-exercises: 25
+teaching: 0
+exercises: 80
 questions:
 - "What is functional programming?"
 - "What is recursion?"
@@ -158,12 +158,12 @@ def factorial(n):
 > def fibonacci(n):
 >     # Iterative fibonacci
 >     a, b = 0, 1
->     
+>
 >     for _ in range(n):
 >         a, b = b, a + b
->     
+>
 >     return a
->         
+>
 > for i in range(8):
 >     print(fibonacci(i))
 > ~~~
@@ -202,7 +202,7 @@ def factorial(n):
 > >         return 1
 > >
 > >     return fibonacci(n - 1) + fibonacci(n - 2)
-> > 
+> >
 > > for i in range(8):
 > >     print(fibonacci(i))
 > > ~~~
@@ -423,4 +423,3 @@ print(reduce((lambda a, b: a + b), l))
 {: .challenge}
 
 {% include links.md %}
-

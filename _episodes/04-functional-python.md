@@ -1,7 +1,7 @@
 ---
 title: "Functional Programming in Python"
-teaching: 55
-exercises: 15
+teaching: 0
+exercises: 70
 questions:
 - "How do we express the MapReduce model in a more Pythonic way?"
 - "How can we make our data processing more memory efficient?"
@@ -32,7 +32,7 @@ This tends to come from experience of using the language for long enough to get 
 >
 > ~~~
 > The Zen of Python, by Tim Peters
-> 
+>
 > Beautiful is better than ugly.
 > Explicit is better than implicit.
 > Simple is better than complex.
@@ -316,7 +316,7 @@ for i in count_to_n(5):
 >
 > Optional example - doesn't need to be included.
 > Counting papers from academics.
-> 
+>
 > ~~~
 > class Paper:
 >     def __init__(self, title):
@@ -331,43 +331,43 @@ for i in count_to_n(5):
 > class Person:
 >     def __init__(self, name):
 >         self.name = name
-> 
+>
 >     def __str__(self):
 >         return self.name
-> 
+>
 >     def __repr__(self):
 >         return self.name
-> 
+>
 > class Academic(Person):
 >     def __init__(self, name):
 >         super().__init__(name)
 >         self.papers = []
 >         self.staff = []
-> 
+>
 >     def write_paper(self, title):
 >         new_paper = Paper(title)
-> 
+>
 >         self.papers.append(new_paper)
 >         return new_paper
-> 
+>
 >     def add_staff(self, academic):
 >         if academic not in self.staff:
 >             self.staff.append(academic)
->     
+>
 >     @property
 >     def all_papers(self):
 >         papers = list(self.papers)
 >         for staff in self.staff:
 >             papers = papers + staff.all_papers
-> 
+>
 >         return papers
-> 
-> 
+>
+>
 > academics = [Academic(name) for name in ['Alice', 'Bob', 'Carol', 'David']]
 > alice = academics[0]
 > bob = academics[1]
 > alice.add_staff(bob)
-> 
+>
 > alice.write_paper('A science paper')
 > bob.write_paper('Another science paper')
 >
@@ -385,7 +385,7 @@ def decorate_hello(fun):
     def inner(*args, **kwargs):
         print('Hello!')
         return fun(*args, **kwargs)
-    
+
     return inner
 
 @decorate_hello
@@ -517,7 +517,7 @@ World!
 > ## Dictionary of Squares
 >
 > Define a function `dict_of_squares` which takes an integer and returns a dictionary whose keys `i` are the integers from 1 to N (inclusive) and whose values are lists of square numbers up to `i` squared.
-> 
+>
 > For example:
 >
 > ~~~
@@ -557,4 +557,3 @@ World!
 {: .challenge}
 
 {% include links.md %}
-
