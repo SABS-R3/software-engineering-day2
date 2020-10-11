@@ -1,13 +1,13 @@
 ---
 title: "Functional Programming"
 teaching: 0
-exercises: 80
+exercises: 60
 questions:
 - "What is functional programming?"
 - "What is recursion?"
 - "How does functional programming manipulate data?"
 objectives:
-- "Write recursive functions for to calculate simple sequences"
+- "Write recursive functions to calculate simple sequences"
 - "Use the MapReduce model to process data"
 keypoints:
 - "Pure functions are functions which have no side effects"
@@ -20,23 +20,35 @@ keypoints:
 > ## Functions in Maths
 > > In mathematics, a function is a relation between sets that associates to every element of a first set exactly one element of the second set.
 > >
-> > -- Wikipedia - Function (mathematics)
+> > -- Wikipedia - [Function (mathematics)](https://en.wikipedia.org/wiki/Function_(mathematics))
 {: .callout}
 
 The Functional paradigm is based on mathematical functions.
 A program written in a functional style describes a series of operations which are performed on data to produce a desired output, the focus being on **what** rather than **how**.
 
-The most likely place you will encounter functional programming in the future is in data analysis code, using frameworks such as Hadoop, or languages like R.
+You will likely encounter functional programming in the future in data analysis code, or if you use frameworks such as Hadoop, or languages like R.
+In fact, there's a good [section on functional programming](https://adv-r.hadley.nz/fp.html) in Hadley Wickham's Advanced R book.
 
 Though we are teaching Functional Programming after Object Oriented Programming, it does not build on Object Oriented as Object Oriented built on Procedural Programming.
-It belongs to a different branch in the history of paradigms, the Declarative branch.
+It belongs to a different branch in the history of paradigms, the Declarative family.
+
+> ## Functional Style
+>
+> In his introduction to functional programming in Advanced R, Hadley Wickham gives a good summary of the style:
+>
+> > It’s hard to describe exactly what a functional style is, but generally I think it means decomposing a big problem into smaller pieces, then solving each piece with a function or combination of functions.
+> > When using a functional style, you strive to decompose components of the problem into isolated functions that operate independently.
+> > Each function taken by itself is simple and straightforward to understand; complexity is handled by composing functions in various ways.
+> >
+> > -- Hadley Wickham - [Functional Style](https://adv-r.hadley.nz/fp.html)
+{: .callout}
 
 ## Side Effect and Pure Functions
 
 There's nothing particularly special about the behaviour of functions in Python, almost any valid code can be put inside a function to be called from elsewhere (even defining classes or other functions).
 This means that each function can do anything the Python language can do.
 
-In well designed code, a function should only be responsible for one task (see: Single Responsibility Principle).
+In well designed code, a function should only be responsible for one task (see: [Single Responsibility Principle](https://en.wikipedia.org/wiki/Single-responsibility_principle)).
 As with most guidelines, the reason we do this is to make it easier to reason about the behaviour of our code.
 If a function performs only one task, we can be sure about when it is appropriate to use that function and what will happen when we call it.
 
@@ -133,8 +145,10 @@ def factorial(n):
 ~~~
 {: .language-python}
 
-But there's something a bit dangerous about this implementation: if we attempt to get the factorial of a negative number, the code will get stuck in an infinite loop.
+There's something a bit dangerous about this implementation though: if we attempt to get the factorial of a negative number, the code will get stuck in an infinite loop.
 In practice, Python has a limit to the number of times a function is allowed to recurse, so we'll actually get an error.
+
+To make this safer, we should handle the case where `n < 0` and raise an error.
 
 ~~~
 def factorial(n):
@@ -243,10 +257,13 @@ print(add_one(1))
 If we have a lot of these smaller functions which only get used once, it makes more sense to define them where they're used.
 
 **Lambda functions** are small, nameless functions which fulfil this need.
-In Python Lambda functions are limited to a single expression and are defined using the `lambda` keyword:
+The structure of these functions is not dissimilar to a normal python function definition - we have a keyword `lambda`, a list of parameters, a colon, then the function body.
+In Python, the function body is limited to a single expression, which becomes the return value.
 
 ~~~
-print((lambda x: x + 1)(1))
+add_one = lambda x: x + 1
+
+print(add_one(1))
 ~~~
 {: .language-python}
 
@@ -255,16 +272,26 @@ print((lambda x: x + 1)(1))
 ~~~
 {: .output}
 
-Note that the brackets around the lambda are used for clarity and are not a required part of the lambda expression in general.
+
+We have assigned the lambda function to a variable, so we can see it more clearly, but we'd normally use it immediately.
+Some style guides (we'll come back to these later in the course) consider it bad style to assign a lambda to a variable.
+
+Anonymous functions, exist in many modern languages, though they may not be called 'lambda functions' and may be more or less complex to use.
+For example, see [Lambda Expressions](https://en.cppreference.com/w/cpp/language/lambda) in C++ with precise control over the visibility of variables inside the function scope, and [Function Expessions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions) in JavaScript, which use syntax much more similar to named function definition.
 
 ## Map, Filter, Reduce
 
-One of the main applications of functional programming currently is the Map, Filter, Reduce model of data processing, usually refered to as **MapReduce**.
+One of the most important applications of functional programming in recent years is the Map, Filter, Reduce model of data processing, usually refered to as **MapReduce**.
 This model is particularly useful for the processing and analysis of **Big Data** using tools such as Spark or Hadoop.
 
 Note that the `map` and `filter` functions in Python are use **lazy evaluation**.
 This means that values in an iterable collection are not actually calculated until you need them.
 We'll explain some of the implications of this a little later, but for now, we'll just use `list()` to convert the results to a normal list.
+In these examples we also see the more typical usage of lambda functions.
+
+The `map` function, takes a function and applies it to each value in an **iterable**.
+Here, 'iterable' means any object that can be iterated over - for more details see the [Iterable Abstract Base Class documentation](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable).
+The results of each of those applications become the values in the **iterable** that is returned.
 
 ~~~
 l = [1, 2, 3]
@@ -284,6 +311,8 @@ print(list(map(lambda x: x + 1, l))
 ~~~
 {: .output}
 
+Like `map`, `filter` takes a function and applies it to each value in an iterable, keeping the value if the result of the function application is `True`.
+
 ~~~
 l = [1, 2, 3]
 
@@ -301,6 +330,10 @@ print(list(filter(lambda x: x > 1, l)))
 [2, 3]
 ~~~
 {: .output}
+
+The `reduce` function is different.
+This function uses a function which accepts two values to accumulate the values in the iterable.
+The simplest uses here are to calculate the sum or product of a sequence.
 
 ~~~
 from functools import reduce
@@ -320,6 +353,8 @@ print(reduce((lambda a, b: a + b), l))
 6
 ~~~
 {: .output}
+
+These are the fundamental components of the MapReduce style, and can be combined to perform much more complex data processing operations.
 
 > ## Sum of Squares
 >

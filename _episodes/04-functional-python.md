@@ -1,7 +1,7 @@
 ---
 title: "Functional Programming in Python"
 teaching: 0
-exercises: 70
+exercises: 90
 questions:
 - "How do we express the MapReduce model in a more Pythonic way?"
 - "How can we make our data processing more memory efficient?"
@@ -55,8 +55,8 @@ This tends to come from experience of using the language for long enough to get 
 > ~~~
 > {: .output}
 >
-> These principles are a reasonable set of guidelines when working in any language, not just Python, so it's worth reading and keeping in mind.
-> Many of the common problems we see with research software can be avoided by following these guidelines.
+> Most of these principles are a reasonable set of guidelines when working in any language, not just Python, so it's worth reading and keeping in mind.
+> Many of the common problems we see with research software can be avoided by following these principles.
 >
 {: .callout}
 
@@ -72,7 +72,7 @@ The **list comprehension** is probably the most commonly used comprehension type
 As you might expect from the name, list comprehensions produce a list from some other iterable type.
 In effect they are the same as using `map` and/or `filter` and using `list()` to cast the result to a list, as we did previously.
 
-All comprehension types are structured in a similar way, using the syntax for a literal of that type (in this case a list literal) containing what looks like the top of a for loop.
+All comprehension types are structured in a similar way, using the syntax for a literal of that type (in the case below, a list literal) containing what looks like the top of a for loop.
 To the left of the `for` we put the equivalent of the map operation we want to use:
 
 ~~~
@@ -135,13 +135,15 @@ print({i: 2 * i for i in range(5)})
 > Generally, lists are for looping; tuples for structs. Lists are homogeneous; tuples heterogeneous. Lists for variable length.
 > ~~~
 >
+> Since tuples aren't intended to represent sequences, there's no need for them to have a comprehension structure.
+>
 {: .callout}
 
 ## Generators
 
-### Generator Comprehensions
+### Generator Expressions
 
-Generator comprehensions look very similar to list comprehensions, but behave slightly differently.
+**Generator expressions** look exactly like you might expect a tuple comprehension (which don't exist) to look, and behaves a little differently from the other comprehensions.
 What happens if we try to use them in the same was as we did list comprehensions?
 
 ~~~
@@ -171,7 +173,31 @@ for i in (2 * i for i in range(5)):
 ~~~
 {: .output}
 
-To look at the reasons why you might choose to use a generator comprehension, we'll use some more IPython magics to investigate the performance of the different comprehensions.
+To look at the reasons why you might choose to use a generator comprehension, we'll use some **IPython magics** to investigate the performance of the different comprehensions.
+
+> ## IPython Magics
+> IPython is an extension to the normal Python interpreter which provides us with some extra functionality, including the ability to measure the time taken to run sections of code.
+>
+> To run these examples, we'll need to install IPython inside our virtual environment.
+> To install IPython:
+>
+> ~~~
+> cd code
+> python3 -m venv venv
+> source venv/bin/activate
+> pip3 install ipython memory-profiler
+> ~~~
+> {: .language-bash}
+>
+> To run the IPython interpreter:
+>
+> ~~~
+> ipython
+> ~~~
+> {: .language-bash}
+>
+> If you're familiar with Jupyter Notebooks, you can use one of those instead, as they provide the same extensions as the IPython interpreter.
+{: .callout}
 
 If we initialise and fully iterate over each comprehension, the time taken is very similar.
 
@@ -256,7 +282,7 @@ for x in l:
 ~~~
 {: .output}
 
-Since the list comprehension produces an actual list, whereas the generator comprehension doesn't produce any values until they are required, we also see a large difference in memory use between the two:
+Since the list comprehension produces an actual list, whereas the generator comprehension doesn't produce any values until they are required, we also see a large difference in memory use between the two.
 
 ~~~
 %load_ext memory_profiler
@@ -311,6 +337,8 @@ for i in count_to_n(5):
 5
 ~~~
 {: .output}
+
+For more details on generator functions, see [this section](https://docs.python.org/3/howto/functional.html#generators) of the Python documentation.
 
 > ## Extending Academic Model
 >
@@ -378,13 +406,15 @@ for i in count_to_n(5):
 {: .callout}
 
 ## Decorators
-Function that accepts a function and returns a (different) function
+
+In the section on Object Oriented programming, we encountered the `property` decorator that allowed us to make a method behave like a data attribute.
+A decorator is a function which accepts a function as an argument, adds some behaviour and returns the resulting function.
 
 ~~~
-def decorate_hello(fun):
+def decorate_hello(func):
     def inner(*args, **kwargs):
         print('Hello!')
-        return fun(*args, **kwargs)
+        return func(*args, **kwargs)
 
     return inner
 
@@ -401,6 +431,39 @@ Hello!
 World!
 ~~~
 {: .output}
+
+> ## Decorators
+>
+> Write a decorator, `greeting_decorator` which can be used to decorate the print function and produce the following behaviour.
+> You may find it useful to know that `print(val, end='')` suppresses the newline after printing a value.
+>
+> ~~~
+> greet = greeting_decorator(print)
+>
+> greet('World')
+> ~~~
+> {: .language-python}
+>
+> ~~~
+> Hello World!
+> ~~~
+> {: .output}
+> > ## Solution
+> >
+> > ~~~
+> > def greeting_decorator(func):
+> >     def inner(*args, **kwargs):
+> >         kwargs['end'] = ''
+> >
+> >         print('Hello ', end='')
+> >         func(*args, **kwargs)
+> >         print('!')
+> >
+> >     return inner
+> > ~~~
+> > {: .language-python}
+> {: .solution}
+{: .challenge}
 
 > ## Sum of Squares (Again)
 >
