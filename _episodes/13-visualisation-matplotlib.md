@@ -57,14 +57,15 @@ sudo apt-get install python3-tk
 ~~~
 {: .language-bash}
 
-You'll be asked for the `sabsr3` user's password - once entered, the package will be installed.
+You'll be asked for the `sabsr3` user's password - once entered, and you press `Enter` to confirm the installation, the package will be installed.
 
 
 ## Visualising our Inflammation Data
 
-First, we will import the `pyplot` module from `matplotlib` and use two of its functions to create and display a heat map of our data (you won't need the line beginning `data =` if you're continuing directly after the previous lesson and already have it loaded):
+First, we will import numpy and the `pyplot` module from `matplotlib` and use two of its functions to create and display a heat map of our data (you won't need the line beginning `data =` if you're continuing directly after the previous lesson and already have it loaded):
 
 ~~~
+import numpy
 import matplotlib.pyplot
 
 data = numpy.loadtxt(fname='../data/inflammation-01.csv', delimiter=',')
@@ -77,7 +78,7 @@ matplotlib.pyplot.show()
 
 Blue pixels in this heat map represent low values, while yellow pixels represent high values. As we can see, inflammation rises and falls over a 40-day period.
 
-When we close the generated graph, note that running `matplotlib.pyplot.show()` again doesn't show us the graph. This odd behaviour comes back to Matplotlib's hidden state and is a design decision: `show()` represents the end of expected the graph creation process and is only intended to be used once. So annoyingly, in order to display it again we'd need to recreate the graph.
+When we close the generated graph, note that running `matplotlib.pyplot.show()` again doesn't show us the graph. This odd behaviour comes back to Matplotlib's hidden state and is a design decision: `show()` represents the end of the expected graph creation process and is only intended to be used once. So annoyingly, in order to display it again we'd need to recreate the graph.
 
 Let's take a look at the average inflammation over time:
 
