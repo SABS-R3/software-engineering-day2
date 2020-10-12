@@ -79,9 +79,9 @@ You'll be asked for the `sabsr3` user's password - once entered, and you press `
 > ~~~
 > matplotlib.pyplot.savefig('output.png')
 > ~~~
+> {: .language-python}
 > 
 > Then you can find and open the `output.png` file under Windows.
-> {: .language-python}
 {: .callout}
 
 First, we will import numpy and the `pyplot` module from `matplotlib` and use two of its functions to create and display a heat map of our data (you won't need the line beginning `data =` if you're continuing directly after the previous lesson and already have it loaded):
