@@ -484,7 +484,31 @@ These are the fundamental components of the MapReduce style, and can be combined
 > > ~~~
 > > {: .language-python}
 > {: .solution}
+{: .challenge}
+
+> ## Multiprocessing (Advanced Challenge)
 >
+> **Advanced challenge for if you're finished early.**
+>
+> One of the benefits of functional programming is that, if we have pure functions, when applying / mapping a function to many values in a collection, each application is completely independent of the others.
+> This means that we can take advantage of multiprocessing, without many of the normal problems in synchronisation that this brings.
+>
+> Read through the Python documentation for the [multiprocessing module](https://docs.python.org/3/library/multiprocessing.html), particularly the `Pool.map` method.
+>
+> Update one of our examples to make use of multiprocessing.
+> How much of a performance improvement do you get?
+> Is this as much as you would expect for the number of cores your CPU has?
+>
+> **Hint:** To time the execution of a Python script we can use the Linux program `time`:
+>
+> ~~~
+> time python3 my_script.py
+> ~~~
+>
+> Would we get the same benefits from parallel equivalents of the `filter` and `reduce` functions?
+> Why, or why not?
+>
+> {: .language-bash}
 {: .challenge}
 
 {% include links.md %}
