@@ -62,6 +62,28 @@ You'll be asked for the `sabsr3` user's password - once entered, and you press `
 
 ## Visualising our Inflammation Data
 
+> ## Using Microsoft's Windows Subsystem for Linux (WSL)?
+>
+> If not, you can ignore this!
+> We're going to be using Matplotlib's PyPlot `show()` function to display generated graphs. However, if you're using Microsoft's WSL, you'll very likely find this doesn't work, since WSL doesn't support a graphical interface. We'll be covering this later, but instead of doing this you can save the graph as an image to the filesystem instead, then open the generated image under Windows.
+> 
+> So where you see:
+>
+> ~~~
+> matplotlib.pyplot.show()
+> ~~~
+> {: .language-python}
+>
+> Instead use:
+> 
+> ~~~
+> matplotlib.pyplot.savefig('output.png')
+> ~~~
+> {: .language-python}
+> 
+> Then you can find and open the `output.png` file under Windows.
+{: .callout}
+
 First, we will import numpy and the `pyplot` module from `matplotlib` and use two of its functions to create and display a heat map of our data (you won't need the line beginning `data =` if you're continuing directly after the previous lesson and already have it loaded):
 
 ~~~
