@@ -21,6 +21,32 @@ We don't have any new slides or intro video today, since we're continuing from y
 
 If you want to refresh your memory though, here's the [video](https://youtu.be/YC4ohR5Pf5Q) and [slides](../slides/1.2-Programming-Paradigms.pptx) from yesterday.
 
+## Set up training materials
+
+So let's download the training materials for this material from the GitHub code repository online. Go to [https://github.com/SABS-R3/2020-software-engineering-day2/tree/gh-pages](https://github.com/SABS-R3/2020-software-engineering-day2/tree/gh-pages) in a browser (any will do, although Firefox is already installed on the provided laptops). Select the green `Code` button, and then select `Download ZIP`, and then in Firefox selecting `Save File` at the dialogue prompt. This will download all the files within a single archive file. After it's finished downloading, we need to extract all files from the archive. Find where the file has been downloaded to (on the provided laptops this is `/home/sabsr3/Downloads`, then start a terminal. You can start a terminal by right-clicking on the desktop and selecting `Open in Terminal`. Assuming the file has downloaded to e.g. `/home/sabsr3/Downloads`, type the following within the Terminal shell:
+
+~~~
+cd ~
+unzip /home/sabsr3/Downloads/2020-software-engineering-day2-gh-pages.zip
+~~~
+{: .language-bash}
+
+The first `cd ~` command *changes our working directory* to our home directory (on the provisioned laptops, this is `/home/sabsr3`).
+
+The second command uses the unzip program to unpack the archive in your home directory, within a subdirectory called `2020-software-engineering-day2-gh-pages`. This subdirectory name is a little long to easily work with, so we'll rename it to something shorter:
+
+~~~
+mv 2020-software-engineering-day2-gh-pages 2020-se-day2
+~~~
+{: .language-bash}
+
+Change to the `code` directory within that new directory:
+
+~~~
+cd 2020-se-day2/code
+~~~
+{: .language-bash}
+
 > ## Functions in Maths
 > > In mathematics, a function is a relation between sets that associates to every element of a first set exactly one element of the second set.
 > >
