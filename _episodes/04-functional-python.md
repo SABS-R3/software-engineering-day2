@@ -405,10 +405,45 @@ For more details on generator functions, see [this section](https://docs.python.
 > {: .language-python}
 {: .callout}
 
+## Closures
+
+Closures are a relatively common pattern in functional programming, that allows us to build functions with some degree of configurable behaviour.
+This structure if used to build these configuration functions can also be called a **funciton factory**.
+
+~~~
+def make_adder(n):
+    # Make a function which adds 'n' to a number
+    def adder(x):
+        # Add 'n' to 'x'
+        return x + n
+
+    return adder
+
+add5 = make_adder(5)
+print(add5(1))
+
+add10 = make_adder(10)
+print(add10(1))
+~~~
+{: .language-python}
+
+~~~
+6
+11
+~~~
+{: .output}
+
+Using this structure, when we call the `make_adder` function, we provide the number that the adder will add.
+This parameter of the `make_adder` function is visible to any functions inside it, namely the `adder` function.
+When we return the `adder` function, it encloses the value of the parameter `n` - hence the name 'closure'.
+
+By building our code like this, we can make an adder for any number we want, without having to write a custom function each time.
+
 ## Decorators
 
 In the section on Object Oriented programming, we encountered the `property` decorator that allowed us to make a method behave like a data attribute.
 A decorator is a function which accepts a function as an argument, adds some behaviour and returns the resulting function.
+In Python they are typically implemented as closures.
 
 ~~~
 def decorate_hello(func):
