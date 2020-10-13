@@ -439,6 +439,15 @@ When we return the `adder` function, it encloses the value of the parameter `n` 
 
 By building our code like this, we can make an adder for any number we want, without having to write a custom function each time.
 
+As we said previously, closures are one of the places where lambdas are useful.
+Instead of the example above we could have written:
+
+~~~
+def make_adder(n):
+    return lambda x: x + n
+~~~
+{: .language-python}
+
 ## Decorators
 
 In the section on Object Oriented programming, we encountered the `property` decorator that allowed us to make a method behave like a data attribute.
