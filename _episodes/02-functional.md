@@ -486,7 +486,7 @@ These are the fundamental components of the MapReduce style, and can be combined
 > {: .solution}
 {: .challenge}
 
-> ## Multiprocessing (Advanced Challenge)
+> ## Multiprocessing (Optional Advanced Challenge)
 >
 > **Advanced challenge for if you're finished early.**
 >
