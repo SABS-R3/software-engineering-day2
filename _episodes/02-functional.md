@@ -304,19 +304,25 @@ print(add_one(1))
 ~~~
 {: .output}
 
-
 We have assigned the lambda function to a variable, so we can see it more clearly, but we'd normally use it immediately.
 Some style guides (we'll come back to these later in the course) consider it bad style to assign a lambda to a variable.
+This is because the main point of lambdas in Python is to avoid having to name the function - it's a bit strange to do that and then give it a name.
+Because of this, if you find yourself wanting to name a lambda, just use a normal function instead.
+
+Lambda functions also make it slightly harder to do debugging (coming in a few days time) as the debugger and error messages doesn't have a name to show for them.
 
 Anonymous functions, exist in many modern languages, though they may not be called 'lambda functions' and may be more or less complex to use.
-For example, see [Lambda Expressions](https://en.cppreference.com/w/cpp/language/lambda) in C++ with precise control over the visibility of variables inside the function scope, and [Function Expessions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions) in JavaScript, which use syntax much more similar to named function definition.
+For example, see [Lambda Expressions](https://en.cppreference.com/w/cpp/language/lambda) in C++ with precise control over the visibility of variables inside the function scope, and [Function Expressions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions) in JavaScript, which use syntax much more similar to named function definition.
+
+Finally, there's another common use case of lambda functions that we'll come back to later when we see **closures**.
+Due to their simplicity, it can be useful to have a lamdba function as the inner function in a closure.
 
 ## Map, Filter, Reduce
 
 One of the most important applications of functional programming in recent years is the Map, Filter, Reduce model of data processing, usually refered to as **MapReduce**.
 This model is particularly useful for the processing and analysis of **Big Data** using tools such as Spark or Hadoop.
 
-Note that the `map` and `filter` functions in Python are use **lazy evaluation**.
+Note that the `map` and `filter` functions in Python use **lazy evaluation**.
 This means that values in an iterable collection are not actually calculated until you need them.
 We'll explain some of the implications of this a little later, but for now, we'll just use `list()` to convert the results to a normal list.
 In these examples we also see the more typical usage of lambda functions.
@@ -456,7 +462,7 @@ These are the fundamental components of the MapReduce style, and can be combined
 > >
 > {: .solution}
 >
-> Finally, like comments in Python, we'd like it to be possible for users to comment out numbers in the input file the give to our program.
+> Finally, like comments in Python, we'd like it to be possible for users to comment out numbers in the input file they give to our program.
 > Extend your function so that the following tests pass (don't worry about passing the first set of tests with lists of integers):
 >
 > ~~~
