@@ -504,6 +504,7 @@ These are the fundamental components of the MapReduce style, and can be combined
 > ~~~
 > time python3 my_script.py
 > ~~~
+> {: .language-bash}
 >
 > Would we get the same benefits from parallel equivalents of the `filter` and `reduce` functions?
 > Why, or why not?
