@@ -389,7 +389,20 @@ The above example selects rows 0 through 2 and columns 36 through to the end of 
 > ~~~
 > {: .output}
 >
-> We must use np.copy to force the use of separate memory and actually copy the values. Otherwise NumPy tries its hardest to make slices be *views* on data, referencing existing values and not copying them.
+> We must use np.copy to force the use of separate memory and actually copy the values. Otherwise NumPy tries its hardest to make slices be *views* on data, referencing existing values and not copying them, for example:
+> 
+> ~~~
+> x = np.arange(5)
+> y = np.copy(x)
+> y[2] = 0
+> x
+> ~~~
+> {: .language-python}
+>
+> ~~~
+> array([0, 1, 2, 3, 4])
+> ~~~
+> {: .output}
 {: .callout}
 
 ### Elementwise Operations on Multiple Arrays
