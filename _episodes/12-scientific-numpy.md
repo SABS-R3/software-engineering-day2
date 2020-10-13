@@ -151,16 +151,16 @@ array([2, 3, 4, 5, 6])
 > > {: .language-python}
 > >
 > > Will yield the following respectively:
-> > 
+> >
 > > ~~~
 > > array([-2, -1,  0,  1,  2])
 > > array([0, 2, 4, 6, 8])
 > > array([0. , 0.5, 1. , 1.5, 2. ])
 > > ~~~
 > > {: .output}
-> > 
+> >
 > > Note the final one with `/` - digits after the `.` are omitted if they don't show anything interesting (i.e. they are zero).
-> > 
+> >
 > {: .solution}
 {: .challenge}
 
@@ -453,7 +453,7 @@ tripledata:
 > using NumPy's `vstack` and `hstack` functions for vertical and horizontal stacking, respectively.
 >
 > ~~~
-> import numpy
+> import numpy as np
 >
 > A = np.array([[1,2,3], [4,5,6], [7,8,9]])
 > print('A = ')
