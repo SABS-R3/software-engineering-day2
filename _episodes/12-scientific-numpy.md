@@ -178,18 +178,18 @@ That took a while! In NumPy we replicate this by doing:
 
 ~~~
 import numpy as np
-array = np.zeros((50000, 50000))
+array = np.zeros((10000, 10000))
 array = array + 10
 ~~~
 {: .language-python}
 
 Here, we import the NumPy library, use a specialised function to set up a NumPy array of size 10000x10000 with elements set to zero, and then - in a very Pythonic way - add 10 to each element. It's simpler, closer to our conceptual model of what we want to achieve, and it's much faster.
 
-## Revisiting our Inflammation Dataset
+## Introducing an Inflammation Dataset
 
-Let's take a more in-depth look at our CSV inflammation dataset we looked at previously.
+We're now going to use an example dataset based on a clinical trial of inflammation in patients who have been given a new treatment for arthritis. There are a number of these data sets in the `data` directory, and are each stored in comma-separated values (CSV) format: each row holds information for a single patient, and the columns represent successive days.
 
-As before, we can use NumPy to load our dataset into a Python variable:
+We can use first NumPy to load our dataset into a Python variable:
 
 ~~~
 data = np.loadtxt(fname='../data/inflammation-01.csv', delimiter=',')
@@ -208,7 +208,7 @@ array([[0., 0., 1., ..., 3., 0., 0.],
 ~~~
 {: .output}
 
-As a reminder, each row holds information for a single patient, and the columns represent successive days. Each value represents a single inflammation reading for a patient.
+The data in this case has 60 rows (one for each patient) and 40 columns (one for each day). Each cell in the data represents an inflammation reading on a given day for a patient. So this shows the results of measuring the inflammation of 60 patients over a 40 day period.
 
 > ## In the Corner
 >
