@@ -500,8 +500,10 @@ World!
 > >         kwargs['end'] = ''
 > >
 > >         print('Hello ', end='')
-> >         func(*args, **kwargs)
+> >         result = func(*args, **kwargs)
 > >         print('!')
+> >
+> >         return result
 > >
 > >     return inner
 > > ~~~
