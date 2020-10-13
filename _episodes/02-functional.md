@@ -332,8 +332,8 @@ def add_one(x):
     return x + 1
 
 # Returns a <map object> so need to cast to list
-print(list(map(add_one, l))
-print(list(map(lambda x: x + 1, l))
+print(list(map(add_one, l)))
+print(list(map(lambda x: x + 1, l)))
 ~~~
 {: .language-python}
 
