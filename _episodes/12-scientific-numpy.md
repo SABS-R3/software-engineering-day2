@@ -863,8 +863,8 @@ array([[0., 0., 1., 3., 1., 2., 4., 7., 8., 3.],
 Let's assume we wanted to multiply each of the 10 individual day values in a patient row for every patient, by contents of the following array:
 
 ~~~
-multiplier = np.arange(1, 10)
-multipler
+multiplier = np.arange(1, 11)
+multiplier
 ~~~
 {: .language-python}
 
