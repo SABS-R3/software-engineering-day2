@@ -199,6 +199,42 @@ To look at the reasons why you might choose to use a generator comprehension, we
 > If you're familiar with Jupyter Notebooks, you can use one of those instead, as they provide the same extensions as the IPython interpreter.
 {: .callout}
 
+> ## When Do I Optimise?
+>
+> We're about to do some performance profiling, so it's likely the question of "when should I optimse?" will come up.
+> The common answer to this is given in three parts:
+>
+> 1. Don't
+> 2. Not yet
+> 3. Optimise if you must, but profile first
+>
+> There's a couple of reasons why this is actually useful advice.
+> Firstly, it's much more important to have working code than fast code - code that is fast, but doesn't work, isn't going to help anyone.
+> Your focus should always be primarily on producing correct results.
+>
+> Secondly, optimisation often results in code which is less readable.
+> Many of the things we have to do when optimising our code aren't the obvious way to do it.
+> Maybe we have to split up a loop in an unusual way, or use some new bits of NumPy we didn't know about before.
+> Maybe we need to make assumptions about the data that are true now, but might not always be.
+>
+> When we do start profiling and optimising, it's important to focus on the right bits of the code.
+> There's no point optimising part of our code that takes less than 10 seconds to run, if another part takes an hour.
+>
+> Generally, our software will have five stages:
+>
+> 1. Setup
+> 2. Pre-processing
+> 3. Main processing
+> 4. Post-processing
+> 5. Shutdown
+>
+> Usually, it's stage three where our code spends most of its time, so it's here that we should focus our efforts.
+> After stage three, it's usually then stages two and four that are next.
+> Stages one and five very rarely need optimising.
+>
+> When optimising, it's also a good idea to leave comments in the code that explain why you're making these changes, particularly if you've had to do anything which is non-obvious.
+{: .callout}
+
 If we initialise and fully iterate over each comprehension, the time taken is very similar.
 
 ~~~
