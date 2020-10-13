@@ -276,11 +276,11 @@ We also have other inflammation datasets, located in the `data` directory. Let's
 
 First, we need to have a way of determining a list of all our inflammation data files. Their filenames all follow the pattern `inflammation-XX.csv`, where `XX` refers to the number of that dataset. We can use the `glob` library here to help us get these filenames.
 
-The glob library contains a function, also called glob, that finds files and directories whose names match a pattern. We provide those patterns as strings: the character `*` matches zero or more characters, while `?` matches any one character. We can use this to get the names of all the CSV files in the `data` directory which resides in the directory above like so:
+The glob library contains a function, also called glob, that finds files and directories whose names match a pattern. We provide those patterns as strings: the character `*` matches zero or more characters, while `?` matches any one character. We can use this to get the names of all the CSV files in the `data` directory which resides in the directory above like so (assuming we're in the `code` directory):
 
 ~~~
 import glob
-filenames = sorted(glob.glob('inflammation*.csv'))
+filenames = sorted(glob.glob('../data/inflammation*.csv'))
 print(filenames)
 ~~~
 {: .language-python}
