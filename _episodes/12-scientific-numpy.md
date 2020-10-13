@@ -389,7 +389,7 @@ The above example selects rows 0 through 2 and columns 36 through to the end of 
 > ~~~
 > {: .output}
 >
-> We must use np.copy to force the use of separate memory and actually copy the values. Otherwise NumPy tries its hardest to make slices be *views* on data, referencing existing values and not copying them, for example:
+> We can use `np.copy()` to force the use of separate memory and actually copy the values. Otherwise NumPy tries its hardest to make slices be *views* on data, referencing existing values and not copying them. So an example using `np.copy()`:
 > 
 > ~~~
 > x = np.arange(5)
