@@ -140,6 +140,8 @@ def factorial(n):
     for i in range(1, n + 1):
         product = product * i
 
+    return product
+
 for i in range(5):
     print(factorial(i))
 ~~~
