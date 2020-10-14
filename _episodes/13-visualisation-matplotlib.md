@@ -87,10 +87,10 @@ You'll be asked for the `sabsr3` user's password - once entered, and you press `
 First, we will import numpy and the `pyplot` module from `matplotlib` and use two of its functions to create and display a heat map of our data (you won't need the line beginning `data =` if you're continuing directly after the previous lesson and already have it loaded):
 
 ~~~
-import numpy
+import numpy as np
 import matplotlib.pyplot
 
-data = numpy.loadtxt(fname='../data/inflammation-01.csv', delimiter=',')
+data = np.loadtxt(fname='../data/inflammation-01.csv', delimiter=',')
 image = matplotlib.pyplot.imshow(data)
 matplotlib.pyplot.show()
 ~~~
@@ -105,7 +105,7 @@ When we close the generated graph, note that running `matplotlib.pyplot.show()` 
 Let's take a look at the average inflammation over time:
 
 ~~~
-ave_inflammation = numpy.mean(data, axis=0)
+ave_inflammation = np.mean(data, axis=0)
 ave_plot = matplotlib.pyplot.plot(ave_inflammation)
 matplotlib.pyplot.show()
 ~~~
@@ -116,7 +116,7 @@ matplotlib.pyplot.show()
 Here, we have put the average per day across all patients in the variable `ave_inflammation`, then asked `matplotlib.pyplot` to create and display a line graph of those values.  The result is a roughly linear rise and fall, which is suspicious: we might instead expect a sharper rise and slower fall.  Let's have a look at two other statistics:
 
 ~~~
-max_plot = matplotlib.pyplot.plot(numpy.max(data, axis=0))
+max_plot = matplotlib.pyplot.plot(np.max(data, axis=0))
 matplotlib.pyplot.show()
 ~~~
 {: .language-python}
@@ -124,7 +124,7 @@ matplotlib.pyplot.show()
 ![inflammation-maximum-imshow](../fig/13-inflammation-01-maximum.svg)
 
 ~~~
-min_plot = matplotlib.pyplot.plot(numpy.min(data, axis=0))
+min_plot = matplotlib.pyplot.plot(np.min(data, axis=0))
 matplotlib.pyplot.show()
 ~~~
 {: .language-python}
@@ -135,12 +135,12 @@ The maximum value rises and falls smoothly, while the minimum seems to be a step
 
 > ## Make Your Own Plot
 >
-> Create a plot showing the standard deviation (using `numpy.std`)
+> Create a plot showing the standard deviation (using NumPy's `std()` function i.e. `np.std`)
 > of the inflammation data for each day across all patients.
 >
 > > ## Solution
 > > ~~~
-> > std_plot = matplotlib.pyplot.plot(numpy.std(data, axis=0))
+> > std_plot = matplotlib.pyplot.plot(np.std(data, axis=0))
 > > matplotlib.pyplot.show()
 > > ~~~
 > > {: .language-python}
@@ -150,23 +150,23 @@ The maximum value rises and falls smoothly, while the minimum seems to be a step
 
 ## Multiple Plots: Single Graph
 
-Perhaps we want to compare the minimum, maximum, and average plots overlayed together. This would allow us to see the range of values across each day in the trial. Let's use PyCharm to build a script called `overlay_graphs.py` that positions our three graphs in a single plot, or 'figure'.
+Perhaps we want to compare the minimum, maximum, and average plots overlayed together. This would allow us to see the range of values across each day in the trial. Let's use VSCode to build a script called `overlay_graphs.py` that positions our three graphs in a single plot, or 'figure'.
 
 So Matplotlib divides a figure object up into axes: each pair of axes is one 'subplot'. To make a boring figure with just one pair of axes, however, we can just ask for a default new figure, with brand new axes. The `subplots()` function returns a (figure, axis) pair, which we can deal out with parallel assignment.
 
 Given we have a stacked set of graphs in a single figure, we use `legend()` on our axes to add one which uses our given plot labels.
 
 ~~~
-import numpy
+import numpy as np
 import matplotlib.pyplot
 
-data = numpy.loadtxt(fname='../data/inflammation-01.csv', delimiter=',')
+data = np.loadtxt(fname='../data/inflammation-01.csv', delimiter=',')
 
 all_graphs, all_graphs_axes = matplotlib.pyplot.subplots()
 
-all_graphs_axes.plot(numpy.mean(data, axis=0), label='average')
-all_graphs_axes.plot(numpy.max(data, axis=0), label='max')
-all_graphs_axes.plot(numpy.min(data, axis=0), label='min')
+all_graphs_axes.plot(np.mean(data, axis=0), label='average')
+all_graphs_axes.plot(np.max(data, axis=0), label='max')
+all_graphs_axes.plot(np.min(data, axis=0), label='min')
 all_graphs_axes.legend()
 
 matplotlib.pyplot.show()
@@ -178,19 +178,19 @@ matplotlib.pyplot.show()
 
 ## Multiple Plots: Multiple Graphs
 
-We can also group similar plots within a single figure using subplots next to each other within that figure. Let's use PyCharm to build another script called `multiple_graphs.py` that positions our three graphs side-by-side and introduces a number of new commands.
+We can also group similar plots within a single figure using subplots next to each other within that figure. Let's use VSCode to build another script called `multiple_graphs.py` that positions our three graphs side-by-side and introduces a number of new commands.
 
 The function `matplotlib.pyplot.figure()` creates a space into which we will place all of our plots. The parameter `figsize` tells Python how big to make this space.
 
 Each subplot is placed into the figure using its `add_subplot` method. The `add_subplot` method takes 3 parameters. The first denotes how many total rows of subplots there are, the second parameter refers to the total number of subplot columns, and the final parameter denotes which subplot your variable is referencing (left-to-right, top-to-bottom).
 
-Each subplot is stored in a different variable (`axes1`, `axes2`, `axes3`). Once a subplot is created, the axes can be titled using the `set_xlabel()` command (or `set_ylabel()`).
+Each subplot is stored in a different variable (`avg_axes`, `max_axes`, `min_axes`). Once a subplot is created, the axes can be titled using the `set_xlabel()` command (or `set_ylabel()`).
 
 ~~~
-import numpy
+import numpy as np
 import matplotlib.pyplot
 
-data = numpy.loadtxt(fname='../data/inflammation-01.csv', delimiter=',')
+data = np.loadtxt(fname='../data/inflammation-01.csv', delimiter=',')
 
 fig = matplotlib.pyplot.figure(figsize=(10.0, 3.0))
 
@@ -199,13 +199,13 @@ max_axes = fig.add_subplot(1, 3, 2)
 min_axes = fig.add_subplot(1, 3, 3)
 
 avg_axes.set_ylabel('average')
-avg_axes.plot(numpy.mean(data, axis=0))
+avg_axes.plot(np.mean(data, axis=0))
 
 max_axes.set_ylabel('max')
-max_axes.plot(numpy.max(data, axis=0))
+max_axes.plot(np.max(data, axis=0))
 
 min_axes.set_ylabel('min')
-min_axes.plot(numpy.min(data, axis=0))
+min_axes.plot(np.min(data, axis=0))
 
 fig.tight_layout()
 
@@ -223,10 +223,10 @@ The call to `loadtxt` reads our data, and the rest of the program tells the plot
 >
 > > ## Solution
 > > ~~~
-> > import numpy
+> > import numpy as np
 > > import matplotlib.pyplot
 > >
-> > data = numpy.loadtxt(fname='../data/inflammation-01.csv', delimiter=',')
+> > data = np.loadtxt(fname='../data/inflammation-01.csv', delimiter=',')
 > >
 > > # change figsize (swap width and height)
 > > fig = matplotlib.pyplot.figure(figsize=(3.0, 10.0))
@@ -237,13 +237,13 @@ The call to `loadtxt` reads our data, and the rest of the program tells the plot
 > > min_axes = fig.add_subplot(3, 1, 3)
 > >
 > > avg_axes.set_ylabel('average')
-> > avg_axes.plot(numpy.mean(data, axis=0))
+> > avg_axes.plot(np.mean(data, axis=0))
 > >
 > > max_axes.set_ylabel('max')
-> > max_axes.plot(numpy.max(data, axis=0))
+> > max_axes.plot(np.max(data, axis=0))
 > >
 > > min_axes.set_ylabel('min')
-> > min_axes.plot(numpy.min(data, axis=0))
+> > min_axes.plot(np.min(data, axis=0))
 > >
 > > fig.tight_layout()
 > >
@@ -319,13 +319,14 @@ print(new_filename)
 >
 > > ## Solution
 > > ~~~
+> > import os
 > > import glob
-> > import numpy
+> > import numpy as np
 > > import matplotlib.pyplot
 > >
 > > filenames = sorted(glob.glob('../data/inflammation*.csv'))
 > > for f in filenames:
-> >     data = numpy.loadtxt(fname=f, delimiter=',')
+> >     data = np.loadtxt(fname=f, delimiter=',')
 > >
 > >     fig = matplotlib.pyplot.figure(figsize=(10.0, 3.0))
 > >
@@ -334,16 +335,19 @@ print(new_filename)
 > >     min_axes = fig.add_subplot(1, 3, 3)
 > >
 > >     avg_axes.set_ylabel('average')
-> >     avg_axes.plot(numpy.mean(data, axis=0))
+> >     avg_axes.plot(np.mean(data, axis=0))
 > >
 > >     max_axes.set_ylabel('max')
-> >     max_axes.plot(numpy.max(data, axis=0))
+> >     max_axes.plot(np.max(data, axis=0))
 > >
 > >     min_axes.set_ylabel('min')
-> >     min_axes.plot(numpy.min(data, axis=0))
+> >     min_axes.plot(np.min(data, axis=0))
 > >
 > >     fig.tight_layout()
-> >     fig.savefig(f + '.png')
+> > 
+> >     base = os.path.splitext(f)[0]
+> >     new_filename = base + '.png'
+> >     fig.savefig(new_filename)
 > > ~~~
 > > {: .language-python}
 > {: .solution}
@@ -352,8 +356,9 @@ print(new_filename)
 >
 > > ## Solution
 > > ~~~
+> > import os
 > > import glob
-> > import numpy
+> > import numpy as np
 > > import matplotlib.pyplot
 > >
 > > def generate_graph(data):
@@ -364,13 +369,13 @@ print(new_filename)
 > >     min_axes = fig.add_subplot(1, 3, 3)
 > >
 > >     avg_axes.set_ylabel('average')
-> >     avg_axes.plot(numpy.mean(data, axis=0))
+> >     avg_axes.plot(np.mean(data, axis=0))
 > >
 > >     max_axes.set_ylabel('max')
-> >     max_axes.plot(numpy.max(data, axis=0))
+> >     max_axes.plot(np.max(data, axis=0))
 > >
 > >     min_axes.set_ylabel('min')
-> >     min_axes.plot(numpy.min(data, axis=0))
+> >     min_axes.plot(np.min(data, axis=0))
 > >
 > >     fig.tight_layout()
 > >
@@ -378,11 +383,13 @@ print(new_filename)
 > >
 > > filenames = sorted(glob.glob('../data/inflammation*.csv'))
 > > for f in filenames:
-> >     data = numpy.loadtxt(fname=f, delimiter=',')
+> >     data = np.loadtxt(fname=f, delimiter=',')
 > >
 > >     figure = generate_graph(data)
 > >
-> >     figure.savefig(f + '.png')
+> >     base = os.path.splitext(f)[0]
+> >     new_filename = base + '.png'
+> >     figure.savefig(new_filename)
 > > ~~~
 > > {: .language-python}
 > {: .solution}

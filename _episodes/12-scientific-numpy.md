@@ -20,7 +20,6 @@ keypoints:
 - "NumPy arrays only hold elements of a single data type and are generally fixed in size."
 - "Use `numpy.mean(array)`, `numpy.max(array)`, and `numpy.min(array)` to calculate simple statistics."
 - "Use `numpy.mean(array, axis=0)` or `numpy.mean(array, axis=1)` to calculate statistics across the specified axis."
-- "Use `.reshape()` to resize a NumPy array to a different set of dimensions."
 - "Broadcasting allows you to apply an operation to two arrays of different shape, repeating the data in an array of a one-long dimension to match the larger array."
 ---
 
