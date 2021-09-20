@@ -41,7 +41,7 @@ We can do this as follows:
 
 ~~~
 cd
-cd 2020-se-day2/code
+cd se-day2/code
 python3 -m venv venv
 source venv/bin/activate
 pip3 install numpy

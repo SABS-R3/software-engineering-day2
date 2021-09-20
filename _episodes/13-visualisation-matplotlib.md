@@ -38,7 +38,7 @@ Similarly to installing NumPy, we also need to install the Matplotlib external l
 
 ~~~
 cd
-cd 2020-se-day2/code
+cd se-day2/code
 source venv/bin/activate
 ~~~
 {: .language-bash}
