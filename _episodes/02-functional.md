@@ -23,27 +23,35 @@ If you want to refresh your memory though, here's the [video](https://youtu.be/Y
 
 ## Set up training materials
 
-So let's download the training materials for this material from the GitHub code repository online. Go to [https://github.com/SABS-R3/2020-software-engineering-day2/tree/gh-pages](https://github.com/SABS-R3/2020-software-engineering-day2/tree/gh-pages) in a browser (any will do, although Firefox is already installed on the provided laptops). Select the green `Code` button, and then select `Download ZIP`, and then in Firefox selecting `Save File` at the dialogue prompt. This will download all the files within a single archive file. After it's finished downloading, we need to extract all files from the archive. Find where the file has been downloaded to (on the provided laptops this is `/home/sabsr3/Downloads`, then start a terminal. You can start a terminal by right-clicking on the desktop and selecting `Open in Terminal`. Assuming the file has downloaded to e.g. `/home/sabsr3/Downloads`, type the following within the Terminal shell:
+So let's download the training materials for this material from the GitHub code repository online.
+Go to [https://github.com/SABS-R3/software-engineering-day2/tree/gh-pages](https://github.com/SABS-R3/software-engineering-day2/tree/gh-pages) in a browser (any will do, although Firefox is already installed on the provided laptops).
+Select the green `Code` button, and then select `Download ZIP`, and then in Firefox selecting `Save File` at the dialogue prompt.
+This will download all the files within a single archive file.
+After it's finished downloading, we need to extract all files from the archive.
+Find where the file has been downloaded to (on the provided laptops this is `/home/sabsr3/Downloads`, then start a terminal.
+You can start a terminal by right-clicking on the desktop and selecting `Open in Terminal`.
+Assuming the file has downloaded to e.g. `/home/sabsr3/Downloads`, type the following within the Terminal shell:
 
-~~~
+~~~ bash
 cd ~
-unzip /home/sabsr3/Downloads/2020-software-engineering-day2-gh-pages.zip
+unzip /home/sabsr3/Downloads/software-engineering-day2-gh-pages.zip
 ~~~
 {: .language-bash}
 
 The first `cd ~` command *changes our working directory* to our home directory (on the provisioned laptops, this is `/home/sabsr3`).
 
-The second command uses the unzip program to unpack the archive in your home directory, within a subdirectory called `2020-software-engineering-day2-gh-pages`. This subdirectory name is a little long to easily work with, so we'll rename it to something shorter:
+The second command uses the unzip program to unpack the archive in your home directory, within a subdirectory called `software-engineering-day2-gh-pages`.
+This subdirectory name is a little long to easily work with, so we'll rename it to something shorter:
 
 ~~~
-mv 2020-software-engineering-day2-gh-pages 2020-se-day2
+mv software-engineering-day2-gh-pages se-day2
 ~~~
 {: .language-bash}
 
 Change to the `code` directory within that new directory:
 
-~~~
-cd 2020-se-day2/code
+~~~ bash
+cd se-day2/code
 ~~~
 {: .language-bash}
 
@@ -85,9 +93,9 @@ If a function performs only one task, we can be sure about when it is appropriat
 Any behaviour which is not part of the single task of a block of code is called a **side effect**, while a function which has no side effects is a **pure function**.
 In practice these definitions are a little flexible depending on who is using them and in which context.
 The strictest definition of **side effect** includes things like printing to the terminal or saving to a file, so in these cases a function without side effects have no other effect than to return a value.
-In some functional languages, a **pure function** must not only have no side effects, but also must return the same value when given the same arguments.
+Using a stricter definition, a **pure function** must not only have no side effects, but also must return the same value when given the same arguments.
 
-~~~
+~~~ python
 def increment_x(x):
     return x + 1
 
@@ -100,7 +108,7 @@ print(increment_x(3))
 ~~~
 {: .output}
 
-~~~
+~~~ python
 def increment_x(x):
     print('Incrementing', x)
     return x + 1
@@ -134,7 +142,7 @@ For example, `5! = 5 x 4 x 3 x 2 x 1 = 120`.
 
 We can calculate a factorial iteratively:
 
-~~~
+~~~ python
 def factorial(n):
     product = 1
     for i in range(1, n + 1):
@@ -273,7 +281,7 @@ def factorial(n):
 If we build our programs in a functional way, we tend to end up with a lot of small, one line functions which perform very simple operations.
 For example, we might have a function which adds one to a number:
 
-~~~
+~~~ python
 def add_one(x):
     return x + 1
 
@@ -292,7 +300,7 @@ If we have a lot of these smaller functions which only get used once, it makes m
 The structure of these functions is not dissimilar to a normal python function definition - we have a keyword `lambda`, a list of parameters, a colon, then the function body.
 In Python, the function body is limited to a single expression, which becomes the return value.
 
-~~~
+~~~ python
 add_one = lambda x: x + 1
 
 print(add_one(1))
@@ -305,14 +313,14 @@ print(add_one(1))
 {: .output}
 
 We have assigned the lambda function to a variable, so we can see it more clearly, but we'd normally use it immediately.
-Some style guides (we'll come back to these later in the course) consider it bad style to assign a lambda to a variable.
+Most style guides (we'll come back to these later in the course) consider it bad style to assign a lambda to a variable.
 This is because the main point of lambdas in Python is to avoid having to name the function - it's a bit strange to do that and then give it a name.
 Because of this, if you find yourself wanting to name a lambda, just use a normal function instead.
 
-Lambda functions also make it slightly harder to do debugging (coming in a few days time) as the debugger and error messages doesn't have a name to show for them.
+Lambda functions may also make it slightly harder to do debugging (coming in a few days time) as the debugger and error messages doesn't have a name to show for them.
 
 Anonymous functions, exist in many modern languages, though they may not be called 'lambda functions' and may be more or less complex to use.
-For example, see [Lambda Expressions](https://en.cppreference.com/w/cpp/language/lambda) in C++ with precise control over the visibility of variables inside the function scope, and [Function Expressions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions) in JavaScript, which use syntax much more similar to named function definition.
+For example, see [Lambda Expressions](https://en.cppreference.com/w/cpp/language/lambda) in C++ with precise control over the visibility of variables inside the function scope, and the multiple methods available in Javascript such as [Function Expressions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions#the_function_expression_function_expression), which use syntax much more similar to named function definition.
 
 Finally, there's another common use case of lambda functions that we'll come back to later when we see **closures**.
 Due to their simplicity, it can be useful to have a lamdba function as the inner function in a closure.
@@ -331,7 +339,7 @@ The `map` function, takes a function and applies it to each value in an **iterab
 Here, 'iterable' means any object that can be iterated over - for more details see the [Iterable Abstract Base Class documentation](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable).
 The results of each of those applications become the values in the **iterable** that is returned.
 
-~~~
+~~~ python
 l = [1, 2, 3]
 
 def add_one(x):
@@ -351,7 +359,7 @@ print(list(map(lambda x: x + 1, l)))
 
 Like `map`, `filter` takes a function and applies it to each value in an iterable, keeping the value if the result of the function application is `True`.
 
-~~~
+~~~ python
 l = [1, 2, 3]
 
 def is_gt_one(x):
@@ -373,7 +381,7 @@ The `reduce` function is different.
 This function uses a function which accepts two values to accumulate the values in the iterable.
 The simplest uses here are to calculate the sum or product of a sequence.
 
-~~~
+~~~ python
 from functools import reduce
 
 l = [1, 2, 3]
@@ -382,7 +390,7 @@ def add(a, b):
     return a + b
 
 print(reduce(add, l))
-print(reduce((lambda a, b: a + b), l))
+print(reduce(lambda a, b: a + b, l))
 ~~~
 {: .language-python}
 
@@ -399,7 +407,7 @@ These are the fundamental components of the MapReduce style, and can be combined
 > Using the MapReduce model, write a function that calculates the sum of the squares of the values in a list.
 > Your function should behave as below:
 >
-> ~~~
+> ~~~ python
 > def sum_of_squares(l):
 >     # Your code here
 >
@@ -422,7 +430,15 @@ These are the fundamental components of the MapReduce style, and can be combined
 >
 > > ## Solution
 > >
-> > ~~~
+> > ~
+
+
+
+
+
+
+
+ python~
 > > from functools import reduce
 > >
 > > def sum_of_squares(l):
@@ -436,7 +452,7 @@ These are the fundamental components of the MapReduce style, and can be combined
 > Now let's assume we're reading in these numbers from an input file, so they arrive as a list of strings.
 > Modify your function so that it passes the following tests:
 >
-> ~~~
+> ~~~ python
 > print(sum_of_squares(['1', '2', '3']))
 > print(sum_of_squares(['-1', '-2', '-3']))
 > ~~~
@@ -450,7 +466,7 @@ These are the fundamental components of the MapReduce style, and can be combined
 >
 > > ## Solution
 > >
-> > ~~~
+> > ~~~ python
 > > from functools import reduce
 > >
 > > def sum_of_squares(l):
@@ -465,7 +481,7 @@ These are the fundamental components of the MapReduce style, and can be combined
 > Finally, like comments in Python, we'd like it to be possible for users to comment out numbers in the input file they give to our program.
 > Extend your function so that the following tests pass (don't worry about passing the first set of tests with lists of integers):
 >
-> ~~~
+> ~~~ python
 > print(sum_of_squares(['1', '2', '3']))
 > print(sum_of_squares(['-1', '-2', '-3']))
 > print(sum_of_squares(['1', '2', '#100', '3']))
@@ -481,7 +497,7 @@ These are the fundamental components of the MapReduce style, and can be combined
 >
 > > ## Solution
 > >
-> > ~~~
+> > ~~~ python
 > > from functools import reduce
 > >
 > > def sum_of_squares(l):
