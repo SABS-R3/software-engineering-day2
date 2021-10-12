@@ -165,10 +165,10 @@ array([2, 3, 4, 5, 6])
 
 These are known as 'vectorised' operations, and are very fast.
 
-But for now, let's take a brief look at a basic example that demonstrates the performance of NumPy over Python lists. First, using Python lists we can do the following, that creates a 2D list of size 10000x10000, sets all elements to zero, then adds 10 to all those elements:
+But for now, let's take a brief look at a basic example that demonstrates the performance of NumPy over Python lists. First, using Python lists we can do the following, that creates a 2D list of size 5000x5000, sets all elements to zero, then adds 10 to all those elements:
 
 ~~~
-nested_list = [[0 for _ in range(10000)] for _ in range(10000)]
+nested_list = [[0 for _ in range(5000)] for _ in range(5000)]
 nested_list = [[x+10 for x in column] for column in nested_list]
 ~~~
 {: .language-python}
@@ -177,12 +177,12 @@ That took a while! In NumPy we replicate this by doing:
 
 ~~~
 import numpy as np
-array = np.zeros((10000, 10000))
+array = np.zeros((5000, 5000))
 array = array + 10
 ~~~
 {: .language-python}
 
-Here, we import the NumPy library, use a specialised function to set up a NumPy array of size 10000x10000 with elements set to zero, and then - in a very Pythonic way - add 10 to each element. It's simpler, closer to our conceptual model of what we want to achieve, and it's much faster.
+Here, we import the NumPy library, use a specialised function to set up a NumPy array of size 5000x5000 with elements set to zero, and then - in a very Pythonic way - add 10 to each element. It's simpler, closer to our conceptual model of what we want to achieve, and it's much faster.
 
 ## Introducing an Inflammation Dataset
 
