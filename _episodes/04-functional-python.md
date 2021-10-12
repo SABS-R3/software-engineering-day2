@@ -444,7 +444,7 @@ For more details on generator functions, see [this section](https://docs.python.
 ## Closures
 
 Closures are a relatively common pattern in functional programming, that allows us to build functions with some degree of configurable behaviour.
-This structure if used to build these configuration functions can also be called a **funciton factory**.
+This structure if used to build these configuration functions can also be called a **function factory**.
 
 ~~~
 def make_adder(n):
