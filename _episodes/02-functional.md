@@ -28,17 +28,17 @@ Go to [https://github.com/SABS-R3/software-engineering-day2/tree/gh-pages](https
 Select the green `Code` button, and then select `Download ZIP`, and then in Firefox selecting `Save File` at the dialogue prompt.
 This will download all the files within a single archive file.
 After it's finished downloading, we need to extract all files from the archive.
-Find where the file has been downloaded to (on the provided laptops this is `/home/sabsr3/Downloads`, then start a terminal.
+Find where the file has been downloaded to (on the provided laptops this is `/home/dtcse/Downloads`, then start a terminal.
 You can start a terminal by right-clicking on the desktop and selecting `Open in Terminal`.
-Assuming the file has downloaded to e.g. `/home/sabsr3/Downloads`, type the following within the Terminal shell:
+Assuming the file has downloaded to e.g. `/home/dtcse/Downloads`, type the following within the Terminal shell:
 
 ~~~ bash
 cd ~
-unzip /home/sabsr3/Downloads/software-engineering-day2-gh-pages.zip
+unzip /home/dtcse/Downloads/software-engineering-day2-gh-pages.zip
 ~~~
 {: .language-bash}
 
-The first `cd ~` command *changes our working directory* to our home directory (on the provisioned laptops, this is `/home/sabsr3`).
+The first `cd ~` command *changes our working directory* to our home directory (on the provisioned laptops, this is `/home/dtcse`).
 
 The second command uses the unzip program to unpack the archive in your home directory, within a subdirectory called `software-engineering-day2-gh-pages`.
 This subdirectory name is a little long to easily work with, so we'll rename it to something shorter:

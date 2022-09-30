@@ -109,11 +109,8 @@ my_array.append(4)
 {: .language-python}
 
 ~~~
----
-AttributeError                            Traceback (most recent call last)
-<ipython-input-10-b12177763178> in <module>()
-----> 1 my_array.append(4)
-
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
 AttributeError: 'numpy.ndarray' object has no attribute 'append'
 ~~~
 {: .output}
@@ -165,10 +162,10 @@ array([2, 3, 4, 5, 6])
 
 These are known as 'vectorised' operations, and are very fast.
 
-But for now, let's take a brief look at a basic example that demonstrates the performance of NumPy over Python lists. First, using Python lists we can do the following, that creates a 2D list of size 5000x5000, sets all elements to zero, then adds 10 to all those elements:
+But for now, let's take a brief look at a basic example that demonstrates the performance of NumPy over Python lists. First, using Python lists we can do the following, that creates a 2D list of size 10000x10000, sets all elements to zero, then adds 10 to all those elements:
 
 ~~~
-nested_list = [[0 for _ in range(5000)] for _ in range(5000)]
+nested_list = [[0 for _ in range(10000)] for _ in range(10000)]
 nested_list = [[x+10 for x in column] for column in nested_list]
 ~~~
 {: .language-python}
@@ -177,16 +174,30 @@ That took a while! In NumPy we replicate this by doing:
 
 ~~~
 import numpy as np
-array = np.zeros((5000, 5000))
+array = np.zeros((10000, 10000))
 array = array + 10
 ~~~
 {: .language-python}
 
-Here, we import the NumPy library, use a specialised function to set up a NumPy array of size 5000x5000 with elements set to zero, and then - in a very Pythonic way - add 10 to each element. It's simpler, closer to our conceptual model of what we want to achieve, and it's much faster.
+Here, we import the NumPy library, use a specialised function to set up a NumPy array of size 5000x5000 with elements set to zero, and then - in a very Pythonic way - add 10 to each element. It's simpler, closer to our conceptual model of what we want to achieve, and due to NumPy's optimisations for dealing with matrices, it's much faster.
 
 ## Introducing an Inflammation Dataset
 
-We're now going to use an example dataset based on a clinical trial of inflammation in patients who have been given a new treatment for arthritis. There are a number of these data sets in the `data` directory, and are each stored in comma-separated values (CSV) format: each row holds information for a single patient, and the columns represent successive days.
+We're now going to use an example dataset based on a clinical trial of inflammation in patients who have been given a new treatment for arthritis. There are a number of these data sets in the `data` directory.
+
+> ## What Does the Patient Inflammation Data Contain?
+>
+> Each dataset records inflammation measurements from a separate clinical trial of the drug, and each dataset contains information for 60 patients, who had their inflammation levels recorded for 40 days whilst participating in the trial.
+>
+> ![Snapshot of the inflammation dataset](../fig/inflammation-study-pipeline.png){: .image-with-shadow width="800px" }
+> <p style="text-align: center;">Inflammation study pipeline from the <a href="https://swcarpentry.github.io/python-novice-inflammation/fig/lesson-overview.svg">Software Carpentry Python novice lesson</a></p>
+> 
+> Each of the data files uses the popular [comma-separated (CSV) format](https://en.wikipedia.org/wiki/Comma-separated_values) to represent the data, where:
+>
+> - Each row holds inflammation measurements for a single patient,
+> - Each column represents a successive day in the trial,
+> - Each cell represents an inflammation reading on a given day for a patient (in some arbitrary units of inflammation measurement).
+{: .callout}
 
 We can use first NumPy to load our dataset into a Python variable:
 
@@ -207,7 +218,7 @@ array([[0., 0., 1., ..., 3., 0., 0.],
 ~~~
 {: .output}
 
-The data in this case has 60 rows (one for each patient) and 40 columns (one for each day). Each cell in the data represents an inflammation reading on a given day for a patient. So this shows the results of measuring the inflammation of 60 patients over a 40 day period.
+So, the data in this case has 60 rows (one for each patient) and 40 columns (one for each day) as we would expect. Each cell in the data represents an inflammation reading on a given day for a patient. So this shows the results of measuring the inflammation of 60 patients over a 40 day period.
 
 > ## In the Corner
 >
@@ -246,11 +257,11 @@ The output tells us that `data` currently refers to an N-dimensional array, the 
 > {: .language-python}
 >
 > ~~~
-> dtype('float64')
+> float64
 > ~~~
 > {: .output}
 >
-> This tells us that the NumPy array's elements are floating-point numbers.
+> This tells us that the NumPy array's elements are 64-bit floating-point numbers.
 {: .callout}
 
 With the following command, we can see the array's *shape*:
@@ -304,10 +315,10 @@ data[0:4, 0:10]
 {: .language-python}
 
 ~~~
-[[ 0.  0.  1.  3.  1.  2.  4.  7.  8.  3.]
- [ 0.  1.  2.  1.  2.  1.  3.  2.  2.  6.]
- [ 0.  1.  1.  3.  3.  2.  6.  2.  5.  9.]
- [ 0.  0.  2.  0.  4.  2.  2.  1.  6.  7.]]
+array([[0., 0., 1., 3., 1., 2., 4., 7., 8., 3.],
+       [0., 1., 2., 1., 2., 1., 3., 2., 2., 6.],
+       [0., 1., 1., 3., 3., 2., 6., 2., 5., 9.],
+       [0., 0., 2., 0., 4., 2., 2., 1., 6., 7.]])
 ~~~
 {: .output}
 
@@ -323,11 +334,11 @@ data[5:10, 0:10]
 Which will show us data from patients 5-9 (rows) across the first 10 days (columns):
 
 ~~~
-[[ 0.  0.  1.  2.  2.  4.  2.  1.  6.  4.]
- [ 0.  0.  2.  2.  4.  2.  2.  5.  5.  8.]
- [ 0.  0.  1.  2.  3.  1.  2.  3.  5.  3.]
- [ 0.  0.  0.  3.  1.  5.  6.  5.  5.  8.]
- [ 0.  1.  1.  2.  1.  3.  5.  3.  5.  8.]]
+array([[0., 0., 1., 2., 2., 4., 2., 1., 6., 4.],
+       [0., 0., 2., 2., 4., 2., 2., 5., 5., 8.],
+       [0., 0., 1., 2., 3., 1., 2., 3., 5., 3.],
+       [0., 0., 0., 3., 1., 5., 6., 5., 5., 8.],
+       [0., 1., 1., 2., 1., 3., 5., 3., 5., 8.]])
 ~~~
 {: .output}
 
@@ -342,9 +353,9 @@ small
 The above example selects rows 0 through 2 and columns 36 through to the end of the array:
 
 ~~~
-[[ 2.  3.  0.  0.]
- [ 1.  1.  0.  1.]
- [ 2.  2.  1.  1.]]
+array([[2., 3., 0., 0.],
+       [1., 1., 0., 1.],
+       [2., 2., 1., 1.]])
 ~~~
 {: .output}
 
@@ -425,13 +436,13 @@ doubledata[:3, 36:]
 
 ~~~
 original:
-[[ 2.  3.  0.  0.]
- [ 1.  1.  0.  1.]
- [ 2.  2.  1.  1.]]
+array([[2., 3., 0., 0.],
+       [1., 1., 0., 1.],
+       [2., 2., 1., 1.]])
 doubledata:
-[[ 4.  6.  0.  0.]
- [ 2.  2.  0.  2.]
- [ 4.  4.  2.  2.]]
+array([[4., 6., 0., 0.],
+       [2., 2., 0., 2.],
+       [4., 4., 2., 2.]])
 ~~~
 {: .output}
 
@@ -453,9 +464,9 @@ print(tripledata[:3, 36:])
 
 ~~~
 tripledata:
-[[ 6.  9.  0.  0.]
- [ 3.  3.  0.  3.]
- [ 6.  6.  3.  3.]]
+array([[6., 9., 0., 0.],
+       [3., 3., 0., 3.],
+       [6., 6., 3., 3.]])
 ~~~
 {: .output}
 
@@ -581,7 +592,7 @@ print(np.mean(data))
 > {: .language-python}
 >
 > ~~~
-> Sat Mar 26 13:07:33 2016
+> Fri Sep 30 14:52:40 2022
 > ~~~
 > {: .output}
 >
@@ -609,7 +620,7 @@ from `np.min(data)` to `minval`, and so on.
 ~~~
 max inflammation: 20.0
 min inflammation: 0.0
-std deviation: 4.61383319712
+std deviation: 4.613833197118566
 ~~~
 {: .output}
 
@@ -810,10 +821,8 @@ np.arange(5) * np.arange(6)
 {: .language-python}
 
 ~~~
-ValueError                                Traceback (most recent call last)
-<ipython-input-51-d87da4b8a218> in <module>()
-----> 1 np.arange(5) * np.arange(6)
-
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
 ValueError: operands could not be broadcast together with shapes (5,) (6,)
 ~~~
 {: .output}
@@ -826,10 +835,8 @@ np.zeros([2,3]) * np.zeros([2,4])
 {: .language-python}
 
 ~~~
-ValueError                                Traceback (most recent call last)
-<ipython-input-52-b6b30bdbcb53> in <module>()
-----> 1 np.zeros([2,3]) * np.zeros([2,4])
-
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
 ValueError: operands could not be broadcast together with shapes (2,3) (2,4)
 ~~~
 {: .output}

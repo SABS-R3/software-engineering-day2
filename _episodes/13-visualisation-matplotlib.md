@@ -34,7 +34,9 @@ If you haven't already seen it, see topic [video lecture](https://youtu.be/kjtkY
 
 ## Adding Matplotlib to our Virtual Environment
 
-Similarly to installing NumPy, we also need to install the Matplotlib external library to use it. If we need to reactivate our virtual environment we can do:
+Similarly to installing NumPy, we also need to install the Matplotlib external library to use it. First, make sure you're on the Bash command line, exiting Python if needed.
+
+If we need to reactivate our virtual environment we can do:
 
 ~~~
 cd
@@ -50,14 +52,14 @@ pip3 install matplotlib
 ~~~
 {: .language-bash}
 
-Matplotlib makes use of a *renderer* to allow us to view generated graphs and plots as images. The default renderer ('agg') isn't really suitable for this, so if you're using one of the provided Ubuntu laptops (or the SABS virtual machine) we need to install another one via the Ubuntu operating system's package manager:
+Matplotlib makes use of a *renderer* to allow us to view generated graphs and plots as images. The default renderer ('agg') isn't really suitable for this since it doesn't allow us to view plots as we generate them in Python. So if you're using one of the provided Ubuntu laptops (or the SABS virtual machine) we need to install another one via the Ubuntu operating system's package manager:
 
 ~~~
 sudo apt-get install python3-tk
 ~~~
 {: .language-bash}
 
-You'll be asked for the `sabsr3` user's password - once entered, and you press `Enter` to confirm the installation, the package will be installed.
+You'll be asked for the `dtcse` user's password. Once entered, and you press `Enter` to confirm the installation, the package will be installed.
 
 
 ## Visualising our Inflammation Data
