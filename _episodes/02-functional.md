@@ -430,15 +430,7 @@ These are the fundamental components of the MapReduce style, and can be combined
 >
 > > ## Solution
 > >
-> > ~
-
-
-
-
-
-
-
- python~
+> > ~~~ python
 > > from functools import reduce
 > >
 > > def sum_of_squares(l):
@@ -447,7 +439,7 @@ These are the fundamental components of the MapReduce style, and can be combined
 > > ~~~
 > > {: .language-python}
 > >
-> {: .solution}
+>{: .solution}
 >
 > Now let's assume we're reading in these numbers from an input file, so they arrive as a list of strings.
 > Modify your function so that it passes the following tests:
@@ -476,7 +468,7 @@ These are the fundamental components of the MapReduce style, and can be combined
 > > ~~~
 > > {: .language-python}
 > >
-> {: .solution}
+>{: .solution}
 >
 > Finally, like comments in Python, we'd like it to be possible for users to comment out numbers in the input file they give to our program.
 > Extend your function so that the following tests pass (don't worry about passing the first set of tests with lists of integers):
@@ -507,7 +499,7 @@ These are the fundamental components of the MapReduce style, and can be combined
 > >     return reduce(lambda a, b: a + b, squares)
 > > ~~~
 > > {: .language-python}
-> {: .solution}
+>{: .solution}
 {: .challenge}
 
 > ## Multiprocessing (Optional Advanced Challenge)
